@@ -1,0 +1,15 @@
+.GameTable {
+    height: 100vh;
+    width: 100vw;
+}
+
+.startbtn {
+    position: absolute;
+    right: 0;
+}
+
+.commonCardContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
