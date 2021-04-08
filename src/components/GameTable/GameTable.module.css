@@ -6,10 +6,13 @@
 .startbtn {
     position: absolute;
     right: 0;
+    bottom: 0
 }
 
 .commonCardContainer {
     display: flex;
     justify-content: center;
+    align-content: center;
     flex-wrap: wrap;
+    height: 45%;
 }

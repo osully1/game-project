@@ -16,6 +16,6 @@ export function drawCardsP2(deckid) {
 
 export function drawCommonCards(deckid) {
     try{
-        return fetch('http://deckofcardsapi.com/api/deck/' + deckid + '/draw/?count=6').then(res => res.json());
+        return fetch('http://deckofcardsapi.com/api/deck/' + deckid + '/draw/?count=4').then(res => res.json());
     } catch(error) {console.log(error)}
 }

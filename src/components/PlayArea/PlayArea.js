@@ -1,3 +1,5 @@
+import React from 'react'
+import { Image } from 'react-konva'
 import styles from './PlayArea.module.css'
 
 const PlayArea = (props) => {
