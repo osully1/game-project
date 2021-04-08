@@ -1,13 +1,22 @@
 import React from 'react'
-import { Image } from 'react-konva'
 import styles from './PlayArea.module.css'
+import { Card } from '../Card/Card'
+
 
 const PlayArea = (props) => {
     return props.commonCards.cards.map((card, idx) => {
         return(
-            <div className={styles.commonCards}>
-                <img src={card.image} className={styles.commonCard}></img>
-            </div>
+                <button 
+                    style={{
+                        height: '20vh',
+                        width: '11vw',
+                        margin: '1rem',
+                        backgroundImage: "url(" + `${card.image}` + ")",
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no - repeat',
+                        backgroundSize: 'cover'
+                    }} 
+                />
         )
     })
 }

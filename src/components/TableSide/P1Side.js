@@ -5,9 +5,14 @@ const P1Side = (props) => {
     return(
         <>
         <div className={styles.P1Side}>
-            <P1Hand deckData={props.deckData} player1Hand={props.player1Hand}/>
+            <P1Hand
+                deckData={props.deckData}
+                player1Hand={props.player1Hand}
+                p1Tally={props.p1Tally}
+                setP1Tally={props.setP1Tally}
+            />
         </div>
-        <button className="btn play-btn play-btn-1">Play</button>
+        <p className={styles.p1tally}>{props.p1Tally.pCardValue}</p>
         </>
     )
 }

@@ -23,13 +23,28 @@ const GameTable = (props) => {
         console.log(p1Data)
       }
 
+      const [ p1Tally, setP1Tally ] = useState({pCardValue: null, cCardValue: []})
+      const [ p2Tally, setP2Tally ] = useState({pCardValue: null, cCardValue: []})
+
     return (
         <div className={styles.GameTable}>
-            <P1Side deckData={props.deckData} player1Hand={player1Hand}/>
+            <P1Side 
+                deckData={props.deckData}
+                player1Hand={player1Hand}
+                p1Tally={p1Tally}
+                setP1Tally={setP1Tally}
+            />
             <div className={styles.commonCardContainer}>
-                <PlayArea commonCards={commonCards} />
+                <PlayArea
+                    commonCards={commonCards} 
+                />
             </div>
-            <P2Side deckData={props.deckData} player2Hand={player2Hand}/>
+            <P2Side
+                deckData={props.deckData}
+                player2Hand={player2Hand}
+                p2Tally={p2Tally}
+                setP2Tally={setP2Tally}
+            />
             <button
                 className={styles.startbtn}
                 onClick={() => newGameDeal()}
