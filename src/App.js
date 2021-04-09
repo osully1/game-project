@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Route } from 'react-router-dom'
 import './App.css';
 import { newGameDeck } from './services/card-api';
 import GameTable from './components/GameTable/GameTable'

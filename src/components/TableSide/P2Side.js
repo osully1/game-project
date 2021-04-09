@@ -16,10 +16,15 @@ const P2Side = (props) => {
             />
         </div>
         <Player2Tally
+            deckData={props.deckData}
+            player2Hand={props.player2Hand}
+            setPlayer2Hand={props.setPlayer2Hand}
+            commonCards={props.commonCards}
+            setCommonCards={props.setCommonCards}
             p2Tally={props.p2Tally}
             setP2Tally={props.setP2Tally}
-            p2Turn={props.p2Turn}
-            setP2Turn={props.setP2Turn}
+            p1Turn={props.p1Turn}
+            setP1Turn={props.setP1Turn}
         />
         </>
     )

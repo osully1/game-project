@@ -35,6 +35,9 @@ const GameTable = (props) => {
             <P1Side 
                 deckData={props.deckData}
                 player1Hand={player1Hand}
+                setPlayer1Hand={setPlayer1Hand}
+                commonCards={commonCards}
+                setCommonCards={setCommonCards}
                 p1Tally={p1Tally}
                 setP1Tally={setP1Tally}
                 p1Turn={p1Turn}
@@ -58,6 +61,9 @@ const GameTable = (props) => {
             <P2Side
                 deckData={props.deckData}
                 player2Hand={player2Hand}
+                setPlayer2Hand={setPlayer2Hand}
+                commonCards={commonCards}
+                setCommonCards={setCommonCards}
                 p2Tally={p2Tally}
                 setP2Tally={setP2Tally}
                 p1Turn={p1Turn}
