@@ -19,7 +19,13 @@ const P1Hand = (props) => {
                         backgroundRepeat: 'no - repeat',
                         backgroundSize: 'cover'
                     }}
-                    onClick={() => toggleCard(card.value)}
+                    onClick={() => {
+                        if (props.p1Turn.isP1Turn === true) {
+                            toggleCard(card.value)
+                        } else {
+                            return null
+                        }
+                    }}
                 />
             </div>
         )

@@ -25,6 +25,7 @@ const GameTable = (props) => {
 
       const [ p1Tally, setP1Tally ] = useState({pCardValue: null, cCardValue: []})
       const [ p2Tally, setP2Tally ] = useState({pCardValue: null, cCardValue: []})
+      const [ p1Turn, setP1Turn ] = useState({isP1Turn: true})
 
     return (
         <div className={styles.GameTable}>
@@ -33,10 +34,18 @@ const GameTable = (props) => {
                 player1Hand={player1Hand}
                 p1Tally={p1Tally}
                 setP1Tally={setP1Tally}
+                p1Turn={p1Turn}
+                setP1Turn={setP1Turn}
             />
             <div className={styles.commonCardContainer}>
                 <PlayArea
-                    commonCards={commonCards} 
+                    commonCards={commonCards}
+                    p1Tally={p1Tally}
+                    p2Tally={p2Tally}
+                    setP1Tally={setP1Tally}
+                    setP2Tally={setP2Tally}
+                    p1Turn={p1Turn}
+                    setP1Turn={setP1Turn}
                 />
             </div>
             <P2Side
@@ -44,6 +53,8 @@ const GameTable = (props) => {
                 player2Hand={player2Hand}
                 p2Tally={p2Tally}
                 setP2Tally={setP2Tally}
+                p1Turn={p1Turn}
+                setP1Turn={setP1Turn}
             />
             <button
                 className={styles.startbtn}

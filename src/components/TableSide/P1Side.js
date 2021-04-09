@@ -10,6 +10,8 @@ const P1Side = (props) => {
                 player1Hand={props.player1Hand}
                 p1Tally={props.p1Tally}
                 setP1Tally={props.setP1Tally}
+                p1Turn={props.p1Turn}
+                setP1Turn={props.setP1Turn}
             />
         </div>
         <p className={styles.p1tally}>{props.p1Tally.pCardValue}</p>
