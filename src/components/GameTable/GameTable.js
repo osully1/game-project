@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { drawCardsP1 } from '../../services/card-api';
 import { drawCardsP2 } from '../../services/card-api';
 import { drawCommonCards } from '../../services/card-api'
+import { addToPile1 } from '../../services/card-api'
+import { addToPile2 } from '../../services/card-api'
 import P1Side from '../TableSide/P1Side';
 import P2Side from '../TableSide/P2Side';
 import PlayArea from '../PlayArea/PlayArea';
@@ -14,6 +16,8 @@ const GameTable = (props) => {
     const [ commonCards, setCommonCards ] = useState({deck_id: '', cards: []});
     const [ p1Tally, setP1Tally ] = useState({pCardValue: null, cCardValue: []});
     const [ p2Tally, setP2Tally ] = useState({pCardValue: null, cCardValue: []});
+    const [ p1Pile, setP1Pile ] = useState({deck_id: '', cards: []})
+    const [ p2Pile, setP2Pile ] = useState({deck_id: '', cards: []})
     const [ p1Turn, setP1Turn ] = useState({isP1Turn: true});
 
     async function newGameDeal() {
@@ -43,6 +47,10 @@ const GameTable = (props) => {
                     p2Tally={p2Tally}
                     setP1Tally={setP1Tally}
                     setP2Tally={setP2Tally}
+                    p1Pile={p1Pile}
+                    p2Pile={p2Pile}
+                    setP1Pile={setP1Pile}
+                    setP2Pile={setP2Pile}
                     p1Turn={p1Turn}
                     setP1Turn={setP1Turn}
                 />

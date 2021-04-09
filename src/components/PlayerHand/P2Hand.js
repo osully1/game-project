@@ -22,7 +22,7 @@ const P2Hand = (props) => {
                     }}
                     onClick={() => {
                         if (props.p1Turn.isP1Turn === false) {
-                            toggleCard(card.value)
+                            toggleCard(parseInt(card.value))
                         } else {
                             return null
                         }
