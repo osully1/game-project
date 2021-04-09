@@ -12,6 +12,9 @@ const GameTable = (props) => {
     const [ player1Hand, setPlayer1Hand ] = useState({deck_id: '', cards: []});
     const [ player2Hand, setPlayer2Hand ] = useState({deck_id: '', cards: []});
     const [ commonCards, setCommonCards ] = useState({deck_id: '', cards: []});
+    const [ p1Tally, setP1Tally ] = useState({pCardValue: null, cCardValue: []});
+    const [ p2Tally, setP2Tally ] = useState({pCardValue: null, cCardValue: []});
+    const [ p1Turn, setP1Turn ] = useState({isP1Turn: true});
 
     async function newGameDeal() {
         const p1Data = await drawCardsP1(props.deckData.deck_id)
@@ -22,10 +25,6 @@ const GameTable = (props) => {
         setCommonCards({deck_id: commonData.deck_id, cards: commonData.cards})
         console.log(p1Data)
       }
-
-      const [ p1Tally, setP1Tally ] = useState({pCardValue: null, cCardValue: []})
-      const [ p2Tally, setP2Tally ] = useState({pCardValue: null, cCardValue: []})
-      const [ p1Turn, setP1Turn ] = useState({isP1Turn: true})
 
     return (
         <div className={styles.GameTable}>

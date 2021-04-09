@@ -12,8 +12,8 @@ const P2Hand = (props) => {
             <div className="P2Hand">
                 <button
                     style={{
-                        height: '20vh',
-                        width: '11vw',
+                        height: '7em',
+                        width: '5em',
                         margin: '1rem',
                         backgroundImage: "url(" + `${card.image}` + ")",
                         backgroundPosition: 'center',

@@ -1,0 +1,13 @@
+.p1tally {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 3em;
+    margin-top: -6em;
+}
+
+.p2tally {
+    position: absolute;
+    right: 3em;
+    margin-top: -6em;
+}

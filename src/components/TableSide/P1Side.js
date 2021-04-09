@@ -1,4 +1,5 @@
 import P1Hand from '../PlayerHand/P1Hand'
+import Player1Tally from '../PlayerTally/Player1Tally'
 import styles from './TableSide.module.css'
 
 const P1Side = (props) => {
@@ -14,7 +15,12 @@ const P1Side = (props) => {
                 setP1Turn={props.setP1Turn}
             />
         </div>
-        <p className={styles.p1tally}>{props.p1Tally.pCardValue}</p>
+        <Player1Tally
+            p1Tally={props.p1Tally}
+            setP1Tally={props.setP1Tally}
+            p1Turn={props.p1Turn}
+            setP1Turn={props.setP1Turn}
+        />
         </>
     )
 }
