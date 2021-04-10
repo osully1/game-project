@@ -31,3 +31,15 @@ export function addToPile2(deckid, cards) {
         return fetch(`https://deckofcardsapi.com/api/deck/${deckid}/pile/pile2/add/?cards=${cards}`)
     } catch(error) {console.log(error)}
 }
+
+export function setPile1State(deckid) {
+    try{
+        return fetch(`https://deckofcardsapi.com/api/deck/${deckid}/pile/pile1/list/`)
+    } catch(error) {console.log(error)}
+}
+
+export function setPile2State(deckid) {
+    try{
+        return fetch(`https://deckofcardsapi.com/api/deck/${deckid}/pile/pile2/list/`)
+    } catch(error) {console.log(error)}
+}

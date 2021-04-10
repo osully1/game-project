@@ -1,4 +1,5 @@
 import { addToPile1 } from '../../services/card-api';
+import { setPile1State } from '../../services/card-api';
 
 const P1PlayCardsButton = (props) => {
 
@@ -43,6 +44,11 @@ const P1PlayCardsButton = (props) => {
         props.setP1Pile(newPileCards)
     }
 
+    async function setNewPile1State() {
+        const pileData = await setPile1State(props.deckdata.deck_id)
+        props.setP1Pile(pileData)
+    }
+
     if (props.p1Turn.isP1Turn === true && props.p1Tally.pCardValue.value == tallyEquals().reduce((a, b) => a + b, 0)) {
         return (
             <button
@@ -51,6 +57,7 @@ const P1PlayCardsButton = (props) => {
                 }}
                 onClick={() => {
                         handleNewPileData()
+                        // setPile1State()
                     }
                 }
             >Play Card</button>
