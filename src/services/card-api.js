@@ -28,6 +28,6 @@ export function addToPile1(deckid, cards) {
 
 export function addToPile2(deckid, cards) {
     try{
-        return fetch(`https://deckofcardsapi.com/api/deck/${deckid}/pile/pile1/add/?cards=${cards}`)
+        return fetch(`https://deckofcardsapi.com/api/deck/${deckid}/pile/pile2/add/?cards=${cards}`)
     } catch(error) {console.log(error)}
 }

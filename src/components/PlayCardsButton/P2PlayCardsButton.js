@@ -1,3 +1,5 @@
+import { addToPile2 } from '../../services/card-api';
+
 const P2PlayCardsButton = (props) => {
 
     const tallyEquals = () => {
@@ -23,14 +25,28 @@ const P2PlayCardsButton = (props) => {
 
     const commonCardsCombined = props.p2Tally.cCardValue.map((card, idx) => {
         return (
-            card.value
+            `${card.code},`
         )
     })
 
-    if (props.p1Turn.isP1Turn === false && props.p2Tally.pCardValue == tallyEquals().reduce((a, b) => a + b, 0)) {
+    async function handleNewPileData() {
+        await addToPile2(props.deckData.deck_id, `${commonCardsCombined}${props.p2Tally.pCardValue.code}`)
+        const newPileCards = props.p2Tally.cCardValue.map((card, idx) => {
+                return(card)
+            }).concat(props.p2Tally.pCardValue)
+        props.setP2Pile(newPileCards)
+    }
+
+    if (props.p1Turn.isP1Turn === false && props.p2Tally.pCardValue.value == tallyEquals().reduce((a, b) => a + b, 0)) {
         return (
             <button
-
+            style={{
+                fontSize: '0.8em'
+            }}
+            onClick={() => {
+                handleNewPileData()
+            }
+        }
             >Play Card</button>
         )
     } else {

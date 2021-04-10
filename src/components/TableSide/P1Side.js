@@ -25,6 +25,8 @@ const P1Side = (props) => {
             setP1Tally={props.setP1Tally}
             p1Turn={props.p1Turn}
             setP1Turn={props.setP1Turn}
+            p1Pile={props.p1Pile}
+            setP1Pile={props.setP1Pile}
         />
         </>
     )

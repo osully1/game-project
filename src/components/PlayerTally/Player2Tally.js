@@ -4,16 +4,16 @@ import styles from './PlayerTally.module.css'
 const Player2Tally = (props) => {
 
     const playerSelect = () => {
-        if (props.p2Tally.pCardValue === 'KING') {
-            props.setP2Tally((prevState) => ({...prevState, pCardValue: props.p2Tally.pCardValue.replace('KING', '10')}))
-        } else if (props.p2Tally.pCardValue === 'JACK') {
-            props.setP2Tally((prevState) => ({...prevState, pCardValue: props.p2Tally.pCardValue.replace('JACK', '9')}))
-        } else if (props.p2Tally.pCardValue === 'QUEEN') {
-            props.setP2Tally((prevState) => ({...prevState, pCardValue: props.p2Tally.pCardValue.replace('QUEEN', '8')}))
-        } else if (props.p2Tally.pCardValue === 'ACE') {
-            props.setP2Tally((prevState) => ({...prevState, pCardValue: props.p2Tally.pCardValue.replace('ACE', '1')}))
+        if (props.p2Tally.pCardValue.value === 'KING') {
+            props.setP2Tally((prevState) => ({...prevState, pCardValue: {code: props.p2Tally.pCardValue.code, value: props.p2Tally.pCardValue.value.replace('KING', '10'), suit: props.p2Tally.pCardValue.suit}}))
+        } else if (props.p2Tally.pCardValue.value === 'JACK') {
+            props.setP2Tally((prevState) => ({...prevState, pCardValue: {code: props.p2Tally.pCardValue.code, value: props.p2Tally.pCardValue.value.replace('JACK', '9'), suit: props.p2Tally.pCardValue.suit}}))
+        } else if (props.p2Tally.pCardValue.value === 'QUEEN') {
+            props.setP2Tally((prevState) => ({...prevState, pCardValue: {code: props.p2Tally.pCardValue.code, value: props.p2Tally.pCardValue.value.replace('QUEEN', '8'), suit: props.p2Tally.pCardValue.suit}}))
+        } else if (props.p2Tally.pCardValue.value === 'ACE') {
+            props.setP2Tally((prevState) => ({...prevState, pCardValue: {code: props.p2Tally.pCardValue.code, value: props.p2Tally.pCardValue.value.replace('ACE', '1'), suit: props.p2Tally.pCardValue.suit}}))
         }
-        return (parseInt(props.p2Tally.pCardValue))
+        return (parseInt(props.p2Tally.pCardValue.value))
     }
 
     const tallyEquals = () => {
@@ -58,6 +58,8 @@ const Player2Tally = (props) => {
                 setP2Tally={props.setP2Tally}
                 p1Turn={props.p1Turn}
                 setP1Turn={props.setP1Turn}
+                p2Pile={props.p2Pile}
+                setP2Pile={props.setP2Pile}
             />
         </div>
     )

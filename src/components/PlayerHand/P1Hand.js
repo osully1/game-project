@@ -22,7 +22,7 @@ const P1Hand = (props) => {
                     }}
                     onClick={() => {
                         if (props.p1Turn.isP1Turn === true) {
-                            toggleCard(card.value)
+                            toggleCard({code: card.code, value: card.value, suit: card.suit})
                         } else {
                             return null
                         }

@@ -14,8 +14,8 @@ const GameTable = (props) => {
     const [ player1Hand, setPlayer1Hand ] = useState({deck_id: '', cards: []});
     const [ player2Hand, setPlayer2Hand ] = useState({deck_id: '', cards: []});
     const [ commonCards, setCommonCards ] = useState({deck_id: '', cards: []});
-    const [ p1Tally, setP1Tally ] = useState({pCardValue: null, cCardValue: []});
-    const [ p2Tally, setP2Tally ] = useState({pCardValue: null, cCardValue: []});
+    const [ p1Tally, setP1Tally ] = useState({pCardValue: {}, cCardValue: []});
+    const [ p2Tally, setP2Tally ] = useState({pCardValue: {}, cCardValue: []});
     const [ p1Pile, setP1Pile ] = useState({deck_id: '', cards: []})
     const [ p2Pile, setP2Pile ] = useState({deck_id: '', cards: []})
     const [ p1Turn, setP1Turn ] = useState({isP1Turn: true});
@@ -42,6 +42,8 @@ const GameTable = (props) => {
                 setP1Tally={setP1Tally}
                 p1Turn={p1Turn}
                 setP1Turn={setP1Turn}
+                p1Pile={p1Pile}
+                setP1Pile={setP1Pile}
             />
             <div className={styles.commonCardContainer}>
                 <PlayArea
@@ -68,6 +70,8 @@ const GameTable = (props) => {
                 setP2Tally={setP2Tally}
                 p1Turn={p1Turn}
                 setP1Turn={setP1Turn}
+                p2Pile={p2Pile}
+                setP2Pile={setP2Pile}
             />
             <button
                 className={styles.startbtn}

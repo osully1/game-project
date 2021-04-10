@@ -41,7 +41,7 @@ const PlayArea = (props) => {
                             && props.p1Tally.cCardValue.every(function (i) {
                                 return i.code !== card.code
                             })) {
-                            toggleCardP1({code: card.code, value: card.value})
+                            toggleCardP1({code: card.code, value: card.value, suit: card.suit})
                         } else if (
                             props.p2Tally.pCardValue
                             && props.p1Turn.isP1Turn === false
@@ -49,7 +49,7 @@ const PlayArea = (props) => {
                             && props.p2Tally.cCardValue.every(function (i) {
                                 return i.code !== card.code
                             })) {
-                            toggleCardP2({code: card.code, value: card.value})
+                            toggleCardP2({code: card.code, value: card.value, suit: card.suit})
                         }
                     }}
                 />
