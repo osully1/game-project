@@ -1,4 +1,5 @@
 import P1PlayCardsButton from '../PlayCardsButton/P1PlayCardsButton'
+import P1DiscardButton from '../DiscardButton/P1DiscardButton'
 import styles from './PlayerTally.module.css'
 
 const Player1Tally = (props) => {
@@ -60,6 +61,17 @@ const Player1Tally = (props) => {
                 setP1Turn={props.setP1Turn}
                 p1Pile={props.p1Pile}
                 setP1Pile={props.setP1Pile}
+            />
+            <P1DiscardButton 
+                deckData={props.deckData}
+                player1Hand={props.player1Hand}
+                setPlayer1Hand={props.setPlayer1Hand}
+                commonCards={props.commonCards}
+                setCommonCards={props.setCommonCards}
+                p1Tally={props.p1Tally}
+                setP1Tally={props.setP1Tally}
+                p1Turn={props.p1Turn}
+                setP1Turn={props.setP1Turn}
             />
         </div>
     )

@@ -33,42 +33,41 @@ const P2PlayCardsButton = (props) => {
     if (props.p1Turn === false && props.p2Tally.pCardValue.value == tallyEquals().reduce((a, b) => a + b, 0)) {
         return (
             <button
-            style={{
-                fontSize: '0.8em'
-            }}
-            onClick={() => {
-                handleNewPileData()
+                style={{
+                    fontSize: '0.8em'
+                }}
+                onClick={() => {
+                    handleNewPileData()
 
-                const newHand = []
-                props.player2Hand.cards.forEach((card, idx) => {
-                    if (card.code !== props.p2Tally.pCardValue.code) {
-                        newHand.push(card)
-                    }
-                })
-                props.setPlayer2Hand((prevState) => ({
-                    ...prevState,
-                    cards: newHand
-                }))
+                    const newHand = []
+                    props.player2Hand.cards.forEach((card, idx) => {
+                        if (card.code !== props.p2Tally.pCardValue.code) {
+                            newHand.push(card)
+                        }
+                    })
+                    props.setPlayer2Hand((prevState) => ({
+                        ...prevState,
+                        cards: newHand
+                    }))
 
-                const commonCardArray = []
-                const commonTallyArray = props.p2Tally.cCardValue.map((card, idx) => {
-                    return card.code
-                })
-                props.commonCards.cards.map((card, idx) => {
-                    if(commonTallyArray.indexOf(card.code) === -1) {
-                        commonCardArray.push(card)
-                    }
-                })
-                props.setCommonCards((prevState) => ({
-                    ...prevState,
-                    cards: commonCardArray
-                }))
+                    const commonCardArray = []
+                    const commonTallyArray = props.p2Tally.cCardValue.map((card, idx) => {
+                        return card.code
+                    })
+                    props.commonCards.cards.map((card, idx) => {
+                        if(commonTallyArray.indexOf(card.code) === -1) {
+                            commonCardArray.push(card)
+                        }
+                    })
+                    props.setCommonCards((prevState) => ({
+                        ...prevState,
+                        cards: commonCardArray
+                    }))
 
-                props.setP2Tally({pCardValue: {}, cCardValue: []})
+                    props.setP2Tally({pCardValue: {}, cCardValue: []})
 
-                props.setP1Turn(true)
-            }
-        }
+                    props.setP1Turn(true)
+                }}
             >Play Card</button>
         )
     } else {
