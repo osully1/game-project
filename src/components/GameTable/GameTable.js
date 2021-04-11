@@ -16,9 +16,10 @@ const GameTable = (props) => {
     const [ commonCards, setCommonCards ] = useState({deck_id: '', cards: []});
     const [ p1Tally, setP1Tally ] = useState({pCardValue: {}, cCardValue: []});
     const [ p2Tally, setP2Tally ] = useState({pCardValue: {}, cCardValue: []});
-    const [ p1Pile, setP1Pile ] = useState([])
-    const [ p2Pile, setP2Pile ] = useState([])
+    const [ p1Pile, setP1Pile ] = useState([]);
+    const [ p2Pile, setP2Pile ] = useState([]);
     const [ p1Turn, setP1Turn ] = useState(true);
+    const [ cardsGoToP1, setCardsGoToP1] = useState(true);
 
     async function newGameDeal() {
         const p1Data = await drawCardsP1(props.deckData.deck_id)
@@ -28,7 +29,7 @@ const GameTable = (props) => {
         setPlayer2Hand({deck_id: p2Data.deck_id, cards: p2Data.cards})
         setCommonCards({deck_id: commonData.deck_id, cards: commonData.cards})
         console.log(p1Data)
-      }
+    }
 
     return (
         <div className={styles.GameTable}>
@@ -36,6 +37,8 @@ const GameTable = (props) => {
                 deckData={props.deckData}
                 player1Hand={player1Hand}
                 setPlayer1Hand={setPlayer1Hand}
+                player2Hand={player2Hand}
+                setPlayer2Hand={setPlayer2Hand}
                 commonCards={commonCards}
                 setCommonCards={setCommonCards}
                 p1Tally={p1Tally}
@@ -44,6 +47,8 @@ const GameTable = (props) => {
                 setP1Turn={setP1Turn}
                 p1Pile={p1Pile}
                 setP1Pile={setP1Pile}
+                cardsGoToP1={cardsGoToP1}
+                setCardsGoToP1={setCardsGoToP1}
             />
             <div className={styles.commonCardContainer}>
                 <PlayArea
@@ -62,6 +67,8 @@ const GameTable = (props) => {
             </div>
             <P2Side
                 deckData={props.deckData}
+                player1Hand={player1Hand}
+                setPlayer1Hand={setPlayer1Hand}
                 player2Hand={player2Hand}
                 setPlayer2Hand={setPlayer2Hand}
                 commonCards={commonCards}
@@ -72,6 +79,8 @@ const GameTable = (props) => {
                 setP1Turn={setP1Turn}
                 p2Pile={p2Pile}
                 setP2Pile={setP2Pile}
+                cardsGoToP1={cardsGoToP1}
+                setCardsGoToP1={setCardsGoToP1}
             />
             <button
                 className={styles.startbtn}

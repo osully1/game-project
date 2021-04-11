@@ -1,13 +1,14 @@
-import { addToPile1 } from '../../services/card-api';
-import { setPile1State } from '../../services/card-api';
+import { drawCardsP1 } from '../../services/card-api';
+import { drawCardsP2 } from '../../services/card-api';
 
 const P1PlayCardsButton = (props) => {
 
-    // async function playCard() {
-    //     const cardsWon = 
-    //     const newPile = await addToPile1(props.deckData.deck_id, )
-    // }
-    // Modify p1Tally to accept codes of player and common cards for above function
+    async function newRoundDeal(id) {
+        const p1Data = await drawCardsP1(id)
+        const p2Data = await drawCardsP2(id)
+        props.setPlayer1Hand({deck_id: id, cards: p1Data.cards})
+        props.setPlayer2Hand({deck_id: id, cards: p2Data.cards})
+    }
 
     const tallyEquals = () => {
         if (props.p1Tally.cCardValue.length) {
@@ -44,6 +45,8 @@ const P1PlayCardsButton = (props) => {
                     fontSize: '0.8em'
                 }}
                 onClick={() => {
+                    props.setCardsGoToP1(true)
+
                     handleNewPileData()
 
                     const newHand = []

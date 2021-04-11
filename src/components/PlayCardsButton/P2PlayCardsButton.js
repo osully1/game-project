@@ -1,6 +1,14 @@
-import { addToPile2 } from '../../services/card-api';
+import { drawCardsP1 } from '../../services/card-api';
+import { drawCardsP2 } from '../../services/card-api';
 
 const P2PlayCardsButton = (props) => {
+
+    async function newRoundDeal(id) {
+        const p1Data = await drawCardsP1(id)
+        const p2Data = await drawCardsP2(id)
+        props.setPlayer1Hand({deck_id: id, cards: p1Data.cards})
+        props.setPlayer2Hand({deck_id: id, cards: p2Data.cards})
+    }
 
     const tallyEquals = () => {
         if (props.p2Tally.cCardValue.length) {
@@ -37,6 +45,8 @@ const P2PlayCardsButton = (props) => {
                     fontSize: '0.8em'
                 }}
                 onClick={() => {
+                    props.setCardsGoToP1(false)
+
                     handleNewPileData()
 
                     const newHand = []

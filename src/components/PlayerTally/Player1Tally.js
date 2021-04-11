@@ -50,12 +50,16 @@ const Player1Tally = (props) => {
                     deckData={props.deckData}
                     player1Hand={props.player1Hand}
                     setPlayer1Hand={props.setPlayer1Hand}
+                    player2Hand={props.player2Hand}
+                    setPlayer2Hand={props.setPlayer2Hand}
                     commonCards={props.commonCards}
                     setCommonCards={props.setCommonCards}
                     p1Tally={props.p1Tally}
                     setP1Tally={props.setP1Tally}
                     p1Turn={props.p1Turn}
                     setP1Turn={props.setP1Turn}
+                    cardsGoToP1={props.cardsGoToP1}
+                    setCardsGoToP1={props.setCardsGoToP1}
                 />
                 </>
             )
@@ -69,6 +73,8 @@ const Player1Tally = (props) => {
                 deckData={props.deckData}
                 player1Hand={props.player1Hand}
                 setPlayer1Hand={props.setPlayer1Hand}
+                player2Hand={props.player2Hand}
+                setPlayer2Hand={props.setPlayer2Hand}
                 commonCards={props.commonCards}
                 setCommonCards={props.setCommonCards}
                 p1Tally={props.p1Tally}
@@ -77,6 +83,8 @@ const Player1Tally = (props) => {
                 setP1Turn={props.setP1Turn}
                 p1Pile={props.p1Pile}
                 setP1Pile={props.setP1Pile}
+                cardsGoToP1={props.cardsGoToP1}
+                setCardsGoToP1={props.setCardsGoToP1}
             />
         </div>
     )

@@ -17,6 +17,8 @@ const P2Side = (props) => {
         </div>
         <Player2Tally
             deckData={props.deckData}
+            player1Hand={props.player1Hand}
+            setPlayer1Hand={props.setPlayer1Hand}
             player2Hand={props.player2Hand}
             setPlayer2Hand={props.setPlayer2Hand}
             commonCards={props.commonCards}
@@ -27,6 +29,8 @@ const P2Side = (props) => {
             setP1Turn={props.setP1Turn}
             p2Pile={props.p2Pile}
             setP2Pile={props.setP2Pile}
+            cardsGoToP1={props.cardsGoToP1}
+            setCardsGoToP1={props.setCardsGoToP1}
         />
         </>
     )
