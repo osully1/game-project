@@ -45,6 +45,34 @@ const P1PlayCardsButton = (props) => {
                 }}
                 onClick={() => {
                         handleNewPileData()
+
+                        props.setP1Tally({pCardValue: {}, cCardValue: []})
+
+                        const newHand = []
+                        props.player1Hand.cards.forEach((card, idx) => {
+                            if (card.code !== props.p1Tally.pCardValue.code) {
+                                newHand.push(card)
+                            }
+                        })
+                        props.setPlayer1Hand((prevState) => ({
+                            ...prevState,
+                            cards: newHand
+                        }))
+
+                        const commonCardArray = []
+                        const commonTallyArray = props.p1Tally.cCardValue.map((card, idx) => {
+                            return card.code
+                        })
+                        props.commonCards.cards.map((card, idx) => {
+                            if(commonTallyArray.indexOf(card.code) === -1) {
+                                commonCardArray.push(card)
+                            }
+                        })
+                        props.setCommonCards((prevState) => ({
+                            ...prevState,
+                            cards: commonCardArray
+                        }))
+
                         props.setP1Turn(false)
                     }
                 }
