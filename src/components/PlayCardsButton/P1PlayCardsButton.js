@@ -30,26 +30,14 @@ const P1PlayCardsButton = (props) => {
         }
     }
 
-    const commonCardsCombined = props.p1Tally.cCardValue.map((card, idx) => {
-        return (
-            `${card.code},`
-        )
-    })
-
-    async function handleNewPileData() {
-        await addToPile1(props.deckData.deck_id, `${commonCardsCombined}${props.p1Tally.pCardValue.code}`)
+    function handleNewPileData() {
         const newPileCards = props.p1Tally.cCardValue.map((card, idx) => {
                 return(card)
             }).concat(props.p1Tally.pCardValue)
-        props.setP1Pile(newPileCards)
+        props.setP1Pile(props.p1Pile.concat(newPileCards))
     }
 
-    async function setNewPile1State() {
-        const pileData = await setPile1State(props.deckdata.deck_id)
-        props.setP1Pile(pileData)
-    }
-
-    if (props.p1Turn.isP1Turn === true && props.p1Tally.pCardValue.value == tallyEquals().reduce((a, b) => a + b, 0)) {
+    if (props.p1Turn === true && props.p1Tally.pCardValue.value == tallyEquals().reduce((a, b) => a + b, 0)) {
         return (
             <button
                 style={{
@@ -57,7 +45,7 @@ const P1PlayCardsButton = (props) => {
                 }}
                 onClick={() => {
                         handleNewPileData()
-                        // setPile1State()
+                        props.setP1Turn(false)
                     }
                 }
             >Play Card</button>

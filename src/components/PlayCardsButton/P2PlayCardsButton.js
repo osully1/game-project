@@ -23,21 +23,14 @@ const P2PlayCardsButton = (props) => {
         }
     }
 
-    const commonCardsCombined = props.p2Tally.cCardValue.map((card, idx) => {
-        return (
-            `${card.code},`
-        )
-    })
-
-    async function handleNewPileData() {
-        await addToPile2(props.deckData.deck_id, `${commonCardsCombined}${props.p2Tally.pCardValue.code}`)
+    function handleNewPileData() {
         const newPileCards = props.p2Tally.cCardValue.map((card, idx) => {
                 return(card)
             }).concat(props.p2Tally.pCardValue)
-        props.setP2Pile(newPileCards)
+        props.setP2Pile(props.p2Pile.concat(newPileCards))
     }
 
-    if (props.p1Turn.isP1Turn === false && props.p2Tally.pCardValue.value == tallyEquals().reduce((a, b) => a + b, 0)) {
+    if (props.p1Turn === false && props.p2Tally.pCardValue.value == tallyEquals().reduce((a, b) => a + b, 0)) {
         return (
             <button
             style={{

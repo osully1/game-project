@@ -16,9 +16,9 @@ const GameTable = (props) => {
     const [ commonCards, setCommonCards ] = useState({deck_id: '', cards: []});
     const [ p1Tally, setP1Tally ] = useState({pCardValue: {}, cCardValue: []});
     const [ p2Tally, setP2Tally ] = useState({pCardValue: {}, cCardValue: []});
-    const [ p1Pile, setP1Pile ] = useState({deck_id: '', cards: []})
-    const [ p2Pile, setP2Pile ] = useState({deck_id: '', cards: []})
-    const [ p1Turn, setP1Turn ] = useState({isP1Turn: true});
+    const [ p1Pile, setP1Pile ] = useState([])
+    const [ p2Pile, setP2Pile ] = useState([])
+    const [ p1Turn, setP1Turn ] = useState(true);
 
     async function newGameDeal() {
         const p1Data = await drawCardsP1(props.deckData.deck_id)

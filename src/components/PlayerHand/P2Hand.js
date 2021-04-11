@@ -21,7 +21,7 @@ const P2Hand = (props) => {
                         backgroundSize: 'cover'
                     }}
                     onClick={() => {
-                        if (props.p1Turn.isP1Turn === false) {
+                        if (props.p1Turn === false) {
                             toggleCard({code: card.code, value: card.value, suit: card.suit})
                         } else {
                             return null

@@ -36,7 +36,7 @@ const PlayArea = (props) => {
                     onClick={() => {
                         if (
                             props.p1Tally.pCardValue
-                            && props.p1Turn.isP1Turn === true
+                            && props.p1Turn === true
                             && props.p1Tally.cCardValue.length < 4
                             && props.p1Tally.cCardValue.every(function (i) {
                                 return i.code !== card.code
@@ -44,7 +44,7 @@ const PlayArea = (props) => {
                             toggleCardP1({code: card.code, value: card.value, suit: card.suit})
                         } else if (
                             props.p2Tally.pCardValue
-                            && props.p1Turn.isP1Turn === false
+                            && props.p1Turn === false
                             && props.p2Tally.cCardValue.length < 4
                             && props.p2Tally.cCardValue.every(function (i) {
                                 return i.code !== card.code
