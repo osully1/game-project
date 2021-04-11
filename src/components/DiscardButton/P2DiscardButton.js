@@ -1,5 +1,5 @@
 const P2DiscardButton = (props) => {
-    if (props.p2Tally.pCardValue) {
+    if (props.p2Tally.pCardValue && props.p2Tally.cCardValue.length == 0) {
         return (
             <button
                 style={{
@@ -23,10 +23,15 @@ const P2DiscardButton = (props) => {
                         ...prevState,
                         cards: newCommonCards
                     }))
+
+                    props.setP2Tally({pCardValue: {}, cCardValue: []})
+
                     props.setP1Turn(true)
                 }}
             >Discard</button>
         )
+    } else {
+        return <p></p>
     }
 }
 

@@ -38,17 +38,33 @@ const Player2Tally = (props) => {
         }
     }
 
+    const pTallyDisplay = () => {
+        if (isNaN(playerSelect())) {
+            return <p></p>
+        } else {
+            return (
+                <>
+                <p>{playerSelect()}</p>
+                <p>{tallyEquals().reduce((a, b) => a + b, 0)}</p>
+                <P2DiscardButton 
+                    deckData={props.deckData}
+                    player2Hand={props.player2Hand}
+                    setPlayer2Hand={props.setPlayer2Hand}
+                    commonCards={props.commonCards}
+                    setCommonCards={props.setCommonCards}
+                    p2Tally={props.p2Tally}
+                    setP2Tally={props.setP2Tally}
+                    p1Turn={props.p1Turn}
+                    setP1Turn={props.setP1Turn}
+                />
+                </>
+            )
+        }
+    }
+
     return(
         <div className={styles.p2tally}>
-            <p>{playerSelect()}</p>
-            {/* <p>{props.p2Tally.cCardValue.map((card, idx) => {
-                return (
-                    <span> + {card.value}</span>
-                )
-            })}</p> */}
-            <p>{
-                tallyEquals().reduce((a, b) => a + b, 0)
-            }</p>
+            <p>{pTallyDisplay()}</p>
             <P2PlayCardsButton
                 deckData={props.deckData}
                 player2Hand={props.player2Hand}
@@ -61,17 +77,6 @@ const Player2Tally = (props) => {
                 setP1Turn={props.setP1Turn}
                 p2Pile={props.p2Pile}
                 setP2Pile={props.setP2Pile}
-            />
-            <P2DiscardButton 
-                deckData={props.deckData}
-                player2Hand={props.player2Hand}
-                setPlayer2Hand={props.setPlayer2Hand}
-                commonCards={props.commonCards}
-                setCommonCards={props.setCommonCards}
-                p2Tally={props.p2Tally}
-                setP2Tally={props.setP2Tally}
-                p1Turn={props.p1Turn}
-                setP1Turn={props.setP1Turn}
             />
         </div>
     )
