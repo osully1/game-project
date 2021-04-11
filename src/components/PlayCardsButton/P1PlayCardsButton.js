@@ -46,8 +46,6 @@ const P1PlayCardsButton = (props) => {
                 onClick={() => {
                         handleNewPileData()
 
-                        props.setP1Tally({pCardValue: {}, cCardValue: []})
-
                         const newHand = []
                         props.player1Hand.cards.forEach((card, idx) => {
                             if (card.code !== props.p1Tally.pCardValue.code) {
@@ -72,6 +70,8 @@ const P1PlayCardsButton = (props) => {
                             ...prevState,
                             cards: commonCardArray
                         }))
+
+                        props.setP1Tally({pCardValue: {}, cCardValue: []})
 
                         props.setP1Turn(false)
                     }
