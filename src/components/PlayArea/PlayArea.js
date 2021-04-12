@@ -1,4 +1,5 @@
 import React from 'react'
+import FadeIn from 'react-fade-in'
 import styles from './PlayArea.module.css'
 import { Card } from '../Card/Card'
 
@@ -23,6 +24,7 @@ const PlayArea = (props) => {
 
     return props.commonCards.cards.map((card, idx) => {
         return(
+            <FadeIn delay={250}>
                 <button 
                     style={{
                         height: '7em',
@@ -53,6 +55,7 @@ const PlayArea = (props) => {
                         }
                     }}
                 />
+            </FadeIn>
         )
     })
 }

@@ -11,7 +11,6 @@ function App() {
   async function newGame() {
     const data = await newGameDeck()
     setDeckData(data)
-    console.log(data)
   }
 
   useEffect(() => {

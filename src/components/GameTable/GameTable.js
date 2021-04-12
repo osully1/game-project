@@ -31,6 +31,14 @@ const GameTable = (props) => {
         console.log(p1Data)
     }
 
+    async function newRoundDeal() {
+        const p1Data = await drawCardsP1(props.deckData.deck_id)
+        const p2Data = await drawCardsP2(props.deckData.deck_id)
+        setPlayer1Hand({deck_id: p1Data.deck_id, cards: p1Data.cards})
+        setPlayer2Hand({deck_id: p2Data.deck_id, cards: p2Data.cards})
+        console.log(p1Data)
+    }
+
     return (
         <div className={styles.GameTable}>
             <P1Side 

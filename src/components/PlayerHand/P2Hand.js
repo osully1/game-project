@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import FadeIn from 'react-fade-in'
 import styles from './PlayerHand.module.css'
 
 const P2Hand = (props) => {
@@ -9,26 +9,28 @@ const P2Hand = (props) => {
 
     return props.player2Hand.cards.map((card, idx) => {
         return(
-            <div className="P2Hand">
-                <button
-                    style={{
-                        height: '7em',
-                        width: '5em',
-                        margin: '1rem',
-                        backgroundImage: "url(" + `${card.image}` + ")",
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no - repeat',
-                        backgroundSize: 'cover'
-                    }}
-                    onClick={() => {
-                        if (props.p1Turn === false) {
-                            toggleCard({code: card.code, value: card.value, suit: card.suit})
-                        } else {
-                            return null
-                        }
-                    }}
-                />
-            </div>
+            <FadeIn delay={150}>
+                <div className="P2Hand">
+                    <button
+                        style={{
+                            height: '7em',
+                            width: '5em',
+                            margin: '1rem',
+                            backgroundImage: "url(" + `${card.image}` + ")",
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no - repeat',
+                            backgroundSize: 'cover'
+                        }}
+                        onClick={() => {
+                            if (props.p1Turn === false) {
+                                toggleCard({code: card.code, value: card.value, suit: card.suit})
+                            } else {
+                                return null
+                            }
+                        }}
+                    />
+                </div>
+            </FadeIn>
         )
     })
 }

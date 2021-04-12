@@ -6,8 +6,8 @@ const P2PlayCardsButton = (props) => {
     async function newRoundDeal(id) {
         const p1Data = await drawCardsP1(id)
         const p2Data = await drawCardsP2(id)
-        props.setPlayer1Hand({deck_id: id, cards: p1Data.cards})
-        props.setPlayer2Hand({deck_id: id, cards: p2Data.cards})
+        props.setPlayer1Hand({deck_id: props.deckData.deck_id, cards: p1Data.cards})
+        props.setPlayer2Hand({deck_id: props.deckData.deck_id, cards: p2Data.cards})
     }
 
     const tallyEquals = () => {
@@ -38,6 +38,45 @@ const P2PlayCardsButton = (props) => {
         props.setP2Pile(props.p2Pile.concat(newPileCards))
     }
 
+    const playButtonFunction = () => {
+        props.setCardsGoToP1(false)
+
+        handleNewPileData()
+
+        const newHand = []
+        props.player2Hand.cards.forEach((card, idx) => {
+            if (card.code !== props.p2Tally.pCardValue.code) {
+                newHand.push(card)
+            }
+        })
+        props.setPlayer2Hand((prevState) => ({
+            ...prevState,
+            cards: newHand
+        }))
+
+        const commonCardArray = []
+        const commonTallyArray = props.p2Tally.cCardValue.map((card, idx) => {
+            return card.code
+        })
+        props.commonCards.cards.map((card, idx) => {
+            if(commonTallyArray.indexOf(card.code) === -1) {
+                commonCardArray.push(card)
+            }
+        })
+        props.setCommonCards((prevState) => ({
+            ...prevState,
+            cards: commonCardArray
+        }))
+
+        props.setP2Tally({pCardValue: {}, cCardValue: []})
+
+        props.setP1Turn(true)
+
+        if (props.player1Hand.cards === [] && props.player2Hand.cards === []) {
+            console.log('Hmmm')
+        }
+    }
+
     if (props.p1Turn === false && props.p2Tally.pCardValue.value == tallyEquals().reduce((a, b) => a + b, 0)) {
         return (
             <button
@@ -45,38 +84,7 @@ const P2PlayCardsButton = (props) => {
                     fontSize: '0.8em'
                 }}
                 onClick={() => {
-                    props.setCardsGoToP1(false)
-
-                    handleNewPileData()
-
-                    const newHand = []
-                    props.player2Hand.cards.forEach((card, idx) => {
-                        if (card.code !== props.p2Tally.pCardValue.code) {
-                            newHand.push(card)
-                        }
-                    })
-                    props.setPlayer2Hand((prevState) => ({
-                        ...prevState,
-                        cards: newHand
-                    }))
-
-                    const commonCardArray = []
-                    const commonTallyArray = props.p2Tally.cCardValue.map((card, idx) => {
-                        return card.code
-                    })
-                    props.commonCards.cards.map((card, idx) => {
-                        if(commonTallyArray.indexOf(card.code) === -1) {
-                            commonCardArray.push(card)
-                        }
-                    })
-                    props.setCommonCards((prevState) => ({
-                        ...prevState,
-                        cards: commonCardArray
-                    }))
-
-                    props.setP2Tally({pCardValue: {}, cCardValue: []})
-
-                    props.setP1Turn(true)
+                    playButtonFunction()
                 }}
             >Play Card</button>
         )
