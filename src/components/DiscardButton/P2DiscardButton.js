@@ -36,16 +36,15 @@ const P2DiscardButton = (props) => {
 
         props.setP1Turn(true)
 
-        console.log(props.player2Hand.cards.length)
 
         if (props.player1Hand.cards.length === 0 && props.player2Hand.cards.length === 1) {
             setTimeout(() => {
                 newDeal1()   
-            }, 1000)
+            }, 800)
 
             setTimeout(() => {
                 newDeal2()   
-            }, 2000)
+            }, 1600)
         }
     }
 

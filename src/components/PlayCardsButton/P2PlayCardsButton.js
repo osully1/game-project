@@ -3,11 +3,14 @@ import { drawCardsP2 } from '../../services/card-api';
 
 const P2PlayCardsButton = (props) => {
 
-    async function newRoundDeal(id) {
-        const p1Data = await drawCardsP1(id)
-        const p2Data = await drawCardsP2(id)
-        props.setPlayer1Hand({deck_id: props.deckData.deck_id, cards: p1Data.cards})
-        props.setPlayer2Hand({deck_id: props.deckData.deck_id, cards: p2Data.cards})
+    async function newDeal1() {
+    const p1Data = await drawCardsP1(props.deckData.deck_id)
+    props.setPlayer1Hand({deck_id: p1Data.deck_id, cards: p1Data.cards})
+    }
+
+    async function newDeal2() {
+    const p2Data = await drawCardsP2(props.deckData.deck_id)
+    props.setPlayer2Hand({deck_id: p2Data.deck_id, cards: p2Data.cards})
     }
 
     const tallyEquals = () => {
@@ -72,8 +75,14 @@ const P2PlayCardsButton = (props) => {
 
         props.setP1Turn(true)
 
-        if (props.player1Hand.cards === [] && props.player2Hand.cards === []) {
-            console.log('Hmmm')
+        if (props.player1Hand.cards.length === 0 && props.player2Hand.cards.length === 1) {
+            setTimeout(() => {
+                newDeal1()   
+            }, 800)
+
+            setTimeout(() => {
+                newDeal2()   
+            }, 1600)
         }
     }
 
