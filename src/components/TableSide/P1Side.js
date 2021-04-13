@@ -17,6 +17,7 @@ const P1Side = (props) => {
         </div>
         <Player1Tally
             deckData={props.deckData}
+            setDeckData={props.setDeckData}
             player1Hand={props.player1Hand}
             setPlayer1Hand={props.setPlayer1Hand}
             player2Hand={props.player2Hand}
@@ -31,6 +32,10 @@ const P1Side = (props) => {
             setP1Pile={props.setP1Pile}
             cardsGoToP1={props.cardsGoToP1}
             setCardsGoToP1={props.setCardsGoToP1}
+            p1Score={props.p1Score}
+            p2Score={props.p2Score}
+            setP1Score={props.setP1Score}
+            setP2Score={props.setP2Score}
         />
         </>
     )

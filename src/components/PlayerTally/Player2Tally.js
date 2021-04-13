@@ -48,6 +48,7 @@ const Player2Tally = (props) => {
                 <p>{tallyEquals().reduce((a, b) => a + b, 0)}</p>
                 <P2DiscardButton 
                     deckData={props.deckData}
+                    setDeckData={props.setDeckData}
                     player1Hand={props.player1Hand}
                     setPlayer1Hand={props.setPlayer1Hand}
                     player2Hand={props.player2Hand}
@@ -60,6 +61,10 @@ const Player2Tally = (props) => {
                     setP1Turn={props.setP1Turn}
                     cardsGoToP1={props.cardsGoToP1}
                     setCardsGoToP1={props.setCardsGoToP1}
+                    p1Score={props.p1Score}
+                    p2Score={props.p2Score}
+                    setP1Score={props.setP1Score}
+                    setP2Score={props.setP2Score}
                 />
                 </>
             )
@@ -71,6 +76,7 @@ const Player2Tally = (props) => {
             <p>{pTallyDisplay()}</p>
             <P2PlayCardsButton
                 deckData={props.deckData}
+                setDeckData={props.setDeckData}
                 player1Hand={props.player1Hand}
                 setPlayer1Hand={props.setPlayer1Hand}
                 player2Hand={props.player2Hand}
@@ -85,6 +91,10 @@ const Player2Tally = (props) => {
                 setP2Pile={props.setP2Pile}
                 cardsGoToP1={props.cardsGoToP1}
                 setCardsGoToP1={props.setCardsGoToP1}
+                p1Score={props.p1Score}
+                p2Score={props.p2Score}
+                setP1Score={props.setP1Score}
+                setP2Score={props.setP2Score}
             />
         </div>
     )

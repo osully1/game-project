@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <GameTable deckData={deckData} />
+        <GameTable deckData={deckData} setDeckData={setDeckData}/>
       </header>
     </div>
   );

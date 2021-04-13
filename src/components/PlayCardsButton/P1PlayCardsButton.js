@@ -1,16 +1,21 @@
 import { drawCardsP1 } from '../../services/card-api';
 import { drawCardsP2 } from '../../services/card-api';
+import { drawCommonCards } from '../../services/card-api';
 
 const P1PlayCardsButton = (props) => {
 
     async function newDeal1() {
-    const p1Data = await drawCardsP1(props.deckData.deck_id)
-    props.setPlayer1Hand({deck_id: p1Data.deck_id, cards: p1Data.cards})
+        const p1Data = await drawCardsP1(props.deckData.deck_id)
+        props.setPlayer1Hand({deck_id: p1Data.deck_id, cards: p1Data.cards})
     }
 
     async function newDeal2() {
-    const p2Data = await drawCardsP2(props.deckData.deck_id)
-    props.setPlayer2Hand({deck_id: p2Data.deck_id, cards: p2Data.cards})
+        const p2Data = await drawCardsP2(props.deckData.deck_id)
+        props.setPlayer2Hand({deck_id: p2Data.deck_id, cards: p2Data.cards})
+        props.setDeckData((prevState) => ({
+            ...prevState,
+            remaining: props.deckData.remaining -= 6
+        }))
     }
 
     const tallyEquals = () => {
@@ -74,6 +79,8 @@ const P1PlayCardsButton = (props) => {
         props.setP1Tally({pCardValue: {}, cCardValue: []})
 
         props.setP1Turn(false)
+
+        props.setCardsGoToP1(true)
 
         if (props.player1Hand.cards.length === 1 && props.player2Hand.cards.length === 0) {
             setTimeout(() => {

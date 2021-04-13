@@ -11,6 +11,10 @@ const P1DiscardButton = (props) => {
     async function newDeal2() {
     const p2Data = await drawCardsP2(props.deckData.deck_id)
     props.setPlayer2Hand({deck_id: p2Data.deck_id, cards: p2Data.cards})
+    props.setDeckData((prevState) => ({
+        ...prevState,
+        remaining: props.deckData.remaining -= 6
+    }))
     }
 
     const discardFunction = () => {
