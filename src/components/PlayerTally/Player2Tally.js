@@ -101,6 +101,7 @@ const Player2Tally = (props) => {
                 p2Score={props.p2Score}
                 setP1Score={props.setP1Score}
                 setP2Score={props.setP2Score}
+                myCallbacksList={props.myCallbacksList}
             />
         </div>
     )

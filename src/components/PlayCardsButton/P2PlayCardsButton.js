@@ -90,11 +90,6 @@ const P2PlayCardsButton = (props) => {
         }
 
         const card7DPoint = () => {
-            // if (props.p1Pile.indexOf({code: "7D", suit: "DIAMONDS", value: "7"}) !== -1) {
-            //     props.setP1Score(prevState => ++prevState)
-            // } else if (props.p1Pile.indexOf({code: "7D", suit: "DIAMONDS", value: "7"}) !== -1) {
-            //     props.setP2Score(prevState => ++prevState)
-            // }
             props.p1Pile.map((card, idx) => {
                 if (card.code === "7D") {
                     props.setP1Score(prevState => ++prevState)
@@ -138,55 +133,8 @@ const P2PlayCardsButton = (props) => {
         const newPileCards = props.p2Tally.cCardValue.map((card, idx) => {
                 return(card)
             }).concat(props.p2Tally.pCardValue)
-        
-        props.setP2Pile(props.p2Pile.concat(newPileCards))
-    }
-
-    const playButtonFunction = () => {
-        props.setCardsGoToP1(false)
-
-        handleNewPileData()
-
-        const newHand = []
-        props.player2Hand.cards.forEach((card, idx) => {
-            if (card.code !== props.p2Tally.pCardValue.code) {
-                newHand.push(card)
-            }
-        })
-        props.setPlayer2Hand((prevState) => ({
-            ...prevState,
-            cards: newHand
-        }))
-
-        const commonCardArray = []
-        const commonTallyArray = props.p2Tally.cCardValue.map((card, idx) => {
-            return card.code
-        })
-        props.commonCards.cards.map((card, idx) => {
-            if(commonTallyArray.indexOf(card.code) === -1) {
-                commonCardArray.push(card)
-            }
-        })
-        props.setCommonCards((prevState) => ({
-            ...prevState,
-            cards: commonCardArray
-        }))
-
-        props.setP2Tally({pCardValue: {}, cCardValue: []})
-
-        props.setP1Turn(true)
-
-        if (
-            props.player1Hand.cards.length === 0
-            && props.player2Hand.cards.length === 1
-        ) {
-            setTimeout(() => {
-                newDeal1()   
-            }, 800)
-
-            setTimeout(() => {
-                newDeal2()   
-            }, 1600)
+        if (newPileCards.length > 1) {
+            props.setP2Pile(props.p2Pile.concat(newPileCards))
         }
     }
 
@@ -210,6 +158,68 @@ const P2PlayCardsButton = (props) => {
         }
     }
 
+    const playButtonFunction = () => {
+
+        handleNewPileData()
+
+        const newHand = []
+        props.player2Hand.cards.forEach((card, idx) => {
+            if (card.code !== props.p2Tally.pCardValue.code) {
+                newHand.push(card)
+            }
+        })
+
+        props.setPlayer2Hand((prevState) => ({
+            ...prevState,
+            cards: newHand
+        }))
+
+        const commonCardArray = []
+        const commonTallyArray = props.p2Tally.cCardValue.map((card, idx) => {
+            return card.code
+        })
+        props.commonCards.cards.map((card, idx) => {
+            if(commonTallyArray.indexOf(card.code) === -1) {
+                commonCardArray.push(card)
+            }
+        })
+        props.setCommonCards((prevState) => ({
+            ...prevState,
+            cards: commonCardArray
+        }))
+
+        props.setP2Tally({pCardValue: {}, cCardValue: []})
+
+        if (props.p1Turn === false) {
+            props.setP1Turn(true)
+        } else if (props.p1Turn === true) {
+            props.setP1Turn(false)
+        }
+
+        if (
+            props.player1Hand.cards.length === 0
+            && props.player2Hand.cards.length === 1
+            && props.deckData.remaining > 0
+        ) {
+            setTimeout(() => {
+                newDeal1()   
+            }, 800)
+
+            setTimeout(() => {
+                newDeal2()   
+            }, 1600)
+        }
+    }
+
+    const setStateWithCallback = (newState, callback) => {
+        props.setCardsGoToP1(newState)
+        if (callback) props.myCallbackList.current.push(callback)
+    }
+    const theCallback = () => {
+        playButtonFunction()
+        checkIfNewRound()
+    }
+
     if (props.p1Turn === false && props.p2Tally.pCardValue.value == tallyEquals().reduce((a, b) => a + b, 0)) {
         return (
             <button
@@ -217,8 +227,14 @@ const P2PlayCardsButton = (props) => {
                     fontSize: '0.8em'
                 }}
                 onClick={() => {
-                    playButtonFunction()
-                    setTimeout(checkIfNewRound(), 5000)
+                    props.setP1Turn(true)
+                    if (props.cardsGoToP1 === false) {
+                        playButtonFunction()
+                        checkIfNewRound()
+                    } else {
+                        props.setCardsGoToP1(false)
+                    }
+                    // setStateWithCallback(false, theCallback())
                 }}
             >Play Card</button>
         )

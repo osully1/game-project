@@ -80,9 +80,11 @@ const P1PlayCardsButton = (props) => {
 
         props.setP1Turn(false)
 
-        props.setCardsGoToP1(true)
-
-        if (props.player1Hand.cards.length === 1 && props.player2Hand.cards.length === 0) {
+        if (
+            props.player1Hand.cards.length === 1
+            && props.player2Hand.cards.length === 0
+            && props.deckData.remaining > 0
+        ) {
             setTimeout(() => {
                 newDeal1()   
             }, 800)

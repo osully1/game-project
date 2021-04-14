@@ -1,6 +1,5 @@
 import P2Hand from '../PlayerHand/P2Hand'
 import Player2Tally from '../PlayerTally/Player2Tally'
-import NewDealButton from '../NewDealButton/NewDealButton'
 import styles from './TableSide.module.css'
 
 const P2Side = (props) => {
@@ -39,14 +38,8 @@ const P2Side = (props) => {
             p2Score={props.p2Score}
             setP1Score={props.setP1Score}
             setP2Score={props.setP2Score}
+            myCallbacksList={props.myCallbacksList}
         />
-        {/* <NewDealButton
-            deckData={props.deckData}
-            player1Hand={props.player1Hand}
-            setPlayer1Hand={props.setPlayer1Hand}
-            player2Hand={props.player2Hand}
-            setPlayer2Hand={props.setPlayer2Hand}
-        /> */}
         </>
     )
 }
