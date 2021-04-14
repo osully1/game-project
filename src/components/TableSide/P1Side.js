@@ -29,7 +29,9 @@ const P1Side = (props) => {
             p1Turn={props.p1Turn}
             setP1Turn={props.setP1Turn}
             p1Pile={props.p1Pile}
+            p2Pile={props.p2Pile}
             setP1Pile={props.setP1Pile}
+            setP2Pile={props.setP2Pile}
             cardsGoToP1={props.cardsGoToP1}
             setCardsGoToP1={props.setCardsGoToP1}
             p1Score={props.p1Score}

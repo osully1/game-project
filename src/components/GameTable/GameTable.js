@@ -32,7 +32,7 @@ const GameTable = (props) => {
         setCommonCards({deck_id: commonData.deck_id, cards: commonData.cards})
         props.setDeckData((prevState) => ({
             ...prevState,
-            remaining: props.deckData.remaining -= 10
+            remaining: 30
         }))
     }
 
@@ -60,7 +60,9 @@ const GameTable = (props) => {
                 p1Turn={p1Turn}
                 setP1Turn={setP1Turn}
                 p1Pile={p1Pile}
-                setP1Pile={setP1Pile}
+                p2Pile={p2Pile}
+                setP1Pile={setP1Pile}                
+                setP2Pile={setP2Pile}
                 cardsGoToP1={cardsGoToP1}
                 setCardsGoToP1={setCardsGoToP1}
                 p1Score={p1Score}
@@ -96,7 +98,9 @@ const GameTable = (props) => {
                 setP2Tally={setP2Tally}
                 p1Turn={p1Turn}
                 setP1Turn={setP1Turn}
+                p1Pile={p1Pile}
                 p2Pile={p2Pile}
+                setP1Pile={setP1Pile}                
                 setP2Pile={setP2Pile}
                 cardsGoToP1={cardsGoToP1}
                 setCardsGoToP1={setCardsGoToP1}

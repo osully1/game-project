@@ -25,60 +25,92 @@ const P2PlayCardsButton = (props) => {
         props.setPlayer1Hand({deck_id: p1Data.deck_id, cards: p1Data.cards})
         props.setPlayer2Hand({deck_id: p2Data.deck_id, cards: p2Data.cards})
         props.setCommonCards({deck_id: commonData.deck_id, cards: commonData.cards})
-        console.log(p1Data)
+        props.setDeckData((prevState) => ({
+            ...prevState,
+            remaining: 30
+        }))
     }
 
     const setScores = () => {
 
-        const p1Diamonds = 0
-        const p2Diamonds = 0
+        let p1Diamonds = []
+        let p2Diamonds = []
         props.p1Pile.map((card, idx) => {
             if (card.suit === "DIAMONDS") {
-                p1Diamonds += 1
+                p1Diamonds.push(card)
             }
         })
         props.p2Pile.map((card, idx) => {
             if (card.suit === "DIAMONDS") {
-                p2Diamonds += 1
+                p2Diamonds.push(card)
             }
         })
 
-        const p1Sevens = 0
-        const p2Sevens = 0
+        let p1Sevens = []
+        let p2Sevens = []
         props.p1Pile.map((card, idx) => {
             if (card.value === "7") {
-                p1Sevens += 1
+                p1Sevens.push(card)
             }
         })
-        props.p1Pile.map((card, idx) => {
+        props.p2Pile.map((card, idx) => {
             if (card.value === "7") {
-                p2Sevens += 1
+                p2Sevens.push(card)
             }
-        })  
+        })
 
-        if (props.p1Pile.length > props.p2Pile.length) {
-            props.setP1Score(props.p1Score + 1)
-        } else if (props.p1Pile.length < props.p2Pile.length) {
-            props.setP2Score(props.p2Score + 1)
+        function getDiamonds(array, value) {
+            let count = 0
+            array.forEach((v) => (v === value && count++))
+            return count
         }
 
-        if (p1Diamonds > p2Diamonds) {
-            props.setP1Score(props.p1Score + 1)
-        } else if (p1Diamonds < p2Diamonds) {
-            props.setP2Score(props.p2Score + 1)
+        const cardLengthPoint = () => {
+            if (props.p1Pile.length > props.p2Pile.length) {
+                props.setP1Score(prevState => ++prevState)
+            } else if (props.p1Pile.length < props.p2Pile.length) {
+                props.setP2Score(prevState => ++prevState)
+            }
         }
 
-        if (p1Sevens > p2Sevens) {
-            props.setP1Score(props.p1Score + 1)
-        } else if (p1Sevens < p2Sevens) {
-            props.setP2Score(props.p2Score + 1)
+        const cardDiamondsPoint = () => {
+            if (p1Diamonds.length > p2Diamonds.length) {
+                props.setP1Score(prevState => ++prevState)
+            } else if (p1Diamonds.length < p2Diamonds.length) {
+                props.setP2Score(prevState => ++prevState)
+            }
         }
 
-        if (props.p1Pile.indexOf({code: "7D", suit: "DIAMONDS", value: "7"}) !== -1) {
-            props.setP1Score(props.p1Score + 1)
-        } else if (props.p1Pile.indexOf({code: "7D", suit: "DIAMONDS", value: "7"}) !== -1) {
-            props.setP2Score(props.p2Score + 1)
+        const cardSevensPoint = () => {
+            if (p1Sevens.length > p2Sevens.length) {
+                props.setP1Score(prevState => ++prevState)
+            } else if (p1Sevens.length < p2Sevens.length) {
+                props.setP2Score(prevState => ++prevState)
+            }
         }
+
+        const card7DPoint = () => {
+            // if (props.p1Pile.indexOf({code: "7D", suit: "DIAMONDS", value: "7"}) !== -1) {
+            //     props.setP1Score(prevState => ++prevState)
+            // } else if (props.p1Pile.indexOf({code: "7D", suit: "DIAMONDS", value: "7"}) !== -1) {
+            //     props.setP2Score(prevState => ++prevState)
+            // }
+            props.p1Pile.map((card, idx) => {
+                if (card.code === "7D") {
+                    props.setP1Score(prevState => ++prevState)
+                }
+            })
+            props.p2Pile.map((card, idx) => {
+                if (card.code === "7D") {
+                    props.setP2Score(prevState => ++prevState)
+                }
+            })
+        }       
+
+        setTimeout(cardLengthPoint(), 500)
+        setTimeout(cardDiamondsPoint(), 5500)
+        setTimeout(cardSevensPoint(), 10500)
+        setTimeout(card7DPoint(), 15500)
     }
 
     const tallyEquals = () => {
@@ -167,7 +199,6 @@ const P2PlayCardsButton = (props) => {
         ) {
             props.setP2Pile(props.p2Pile.concat(props.commonCards.cards))
             setScores()
-            newGameDeal()
         } else if (
             props.cardsGoToP1 === true
             && props.deckData.remaining === 0
@@ -176,7 +207,6 @@ const P2PlayCardsButton = (props) => {
         ) {
             props.setP1Pile(props.p1Pile.concat(props.commonCards.cards))
             setScores()
-            newGameDeal()
         }
     }
 
@@ -188,7 +218,7 @@ const P2PlayCardsButton = (props) => {
                 }}
                 onClick={() => {
                     playButtonFunction()
-                    checkIfNewRound()
+                    setTimeout(checkIfNewRound(), 5000)
                 }}
             >Play Card</button>
         )
