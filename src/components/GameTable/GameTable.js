@@ -11,7 +11,7 @@ import NewRoundButton from '../NewRoundButton/NewRoundButton';
 import GameHistoryButton from '../GameHistoryButton/GameHistoryButton';
 import styles from './GameTable.module.css';
 
-const BASE_URL = 'http://localhost:3001/api/scores'
+const BASE_URL = 'https://scopa-backend.herokuapp.com/api/scores'
 
 const GameTable = (props) => {
 
