@@ -2,12 +2,16 @@ import { useState, useRef, useEffect } from 'react';
 import { drawCardsP1 } from '../../services/card-api';
 import { drawCardsP2 } from '../../services/card-api';
 import { drawCommonCards } from '../../services/card-api';
+import { Link } from 'react-router-dom'
 import P1Side from '../TableSide/P1Side';
 import P2Side from '../TableSide/P2Side';
 import PlayArea from '../PlayArea/PlayArea';
+import ScoreScreen from '../ScoreScreen/ScoreScreen';
+import NewRoundButton from '../NewRoundButton/NewRoundButton';
+import GameHistoryButton from '../GameHistoryButton/GameHistoryButton';
 import styles from './GameTable.module.css';
-import useStateWithCallback from 'use-state-with-callback';
-import { useStateWithCallbackLazy } from 'use-state-with-callback';
+
+const BASE_URL = 'http://localhost:3001/api/scores'
 
 const GameTable = (props) => {
 
@@ -19,35 +23,10 @@ const GameTable = (props) => {
     const [ p1Pile, setP1Pile ] = useState([]);
     const [ p2Pile, setP2Pile ] = useState([]);
     const [ p1Turn, setP1Turn ] = useState(true);
-    const [ p1Score, setP1Score] = useState(0)
-    const [ p2Score, setP2Score] = useState(0)
-    const [ cardsGoToP1, setCardsGoToP1] = useState(true)
+    const [ p1Score, setP1Score ] = useState(0)
+    const [ p2Score, setP2Score ] = useState(0)
+    const [ cardsGoToP1, setCardsGoToP1 ] = useState(true)
     const myCallbacksList = useRef([])
-
-    // const [ cardsGoToP1, setCardsGoToP1] = useStateWithCallback(true, (toP1) => {
-    //     if (
-    //         toP1 === false
-    //         && props.deckData.remaining === 0
-    //         && player1Hand.cards.length === 0
-    //         && player2Hand.cards.length === 0
-    //     ) {
-    //         setP2Pile(p2Pile.concat(commonCards.cards))
-    //     } else if (
-    //         toP1 === true
-    //         && props.deckData.remaining === 0
-    //         && player1Hand.cards.length === 0
-    //         && player2Hand.cards.length === 0
-    //     ) {
-    //         setP1Pile(p1Pile.concat(commonCards.cards))
-    //     }
-    //     if (
-    //         props.deckData.remaining === 0
-    //         && player1Hand.cards.length === 0
-    //         && player2Hand.cards.length === 0
-    //     ) {
-    //         setScores()
-    //     }
-    // }, []);
 
     async function newGameDeal() {
         const p1Data = await drawCardsP1(props.deckData.deck_id)
@@ -74,6 +53,20 @@ const GameTable = (props) => {
             ...prevState,
             remaining: props.deckData.remaining -= 6
         }))
+    }
+
+    async function submitScoreData() {
+        const schemaFormat = {
+            player1Score: p1Score,
+            player2Score: p2Score
+        }
+        await fetch(BASE_URL, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'Application/json'
+            },
+            body: JSON.stringify(schemaFormat)
+        }).then(res => res.json())
     }
 
     function handleNewPileData() {
@@ -335,6 +328,23 @@ const GameTable = (props) => {
                 setP2Score={setP2Score}
                 myCallbacksList={myCallbacksList}
             />
+            <ScoreScreen
+                p1Score={p1Score}
+                p2Score={p2Score}
+            />
+            <NewRoundButton
+                deckData={props.deckData}
+                p1Score={p1Score}
+                p2Score={p2Score}
+                player1Hand={player1Hand}
+                player2Hand={player2Hand}
+                submitScoreData={submitScoreData}
+            />
+            {/* <GameHistoryButton
+                player1Hand={player1Hand}
+                player2Hand={player2Hand}
+                deckData={props.deckData}
+            /> */}
             <button
                 className={styles.startbtn}
                 onClick={() => newGameDeal()}

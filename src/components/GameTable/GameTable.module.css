@@ -9,6 +9,19 @@
     bottom: 2em;
 }
 
+.historybtn {
+    position: absolute;
+    right: 2em;
+    bottom: 2em;
+    padding: 0.1em;
+    background-color: #EFEFEF;
+    color: black;
+    text-decoration: none;
+}
+.historybtn:hover {
+    color: black
+}
+
 .commonCardContainer {
     position: absolute;
     margin: 0;

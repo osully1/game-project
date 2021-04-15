@@ -40,6 +40,7 @@ const P2Hand = (props) => {
                             return null
                         }
                     }}
+                    key={idx}
                 />
             </div>
         )

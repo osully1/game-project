@@ -35,6 +35,7 @@ const P1Hand = (props) => {
                             return null
                         }
                     }}
+                    key={idx}
                 />
             </div>
         )

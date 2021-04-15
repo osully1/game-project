@@ -12,3 +12,41 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.scores-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-buttons {
+  position: absolute;
+  margin-top: 0.4em;
+  top: 0;
+  right: 0;
+}
+
+.top-btn {
+  padding: 0.1em;
+  background-color: #EFEFEF;
+  color: black;
+  text-decoration: none;
+  border-color: black;
+  margin-right: 1em;
+}
+
+.top-btn:hover {
+  color: black
+}
+
+.history-btn {
+  padding: 0.1em;
+  background-color: #EFEFEF;
+  color: black;
+  text-decoration: none;
+  border-color: black;
+  margin-right: 1em;
+}
+
+.history-btn:hover {
+  color: black
+}

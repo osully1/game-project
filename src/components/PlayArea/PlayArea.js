@@ -39,15 +39,6 @@ const PlayArea = (props) => {
         return(
             <button 
                 className={css(styles.CommonCards)}
-                // style={{
-                //     height: '7em',
-                //     width: '5em',
-                //     margin: '1rem',
-                //     backgroundImage: "url(" + `${card.image}` + ")",
-                //     backgroundPosition: 'center',
-                //     backgroundRepeat: 'no - repeat',
-                //     backgroundSize: 'cover'
-                // }}
                 style={{backgroundImage: "url(" + `${card.image}` + ")",}}
                 onClick={() => {
                     if (
@@ -68,6 +59,7 @@ const PlayArea = (props) => {
                         toggleCardP2({code: card.code, value: card.value, suit: card.suit})
                     }
                 }}
+                key={idx}
             />
         )
     })
