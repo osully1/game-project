@@ -9,5 +9,6 @@
 .p2tally {
     position: absolute;
     right: 3em;
-    margin-top: -6em;
+    bottom: 0;
+    margin-bottom: 1em;
 }

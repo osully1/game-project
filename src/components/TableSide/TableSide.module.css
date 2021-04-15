@@ -4,6 +4,9 @@
 }
 
 .P2Side {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-self: flex-end;
